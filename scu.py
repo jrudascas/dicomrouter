@@ -4,8 +4,8 @@ from exceptions.Exceptions import AssociationException
 
 class ServiceClassUser:
 
-    def __init__(self, ae_title, tls_parameters=None):
-        self.ae_title = ae_title
+    def __init__(self, origin_aet, tls_parameters=None):
+        self.ae_title = origin_aet
         self.tls_parameters = tls_parameters
         self.ae = AE(ae_title=self.ae_title)
         self.ae.requested_contexts = StoragePresentationContexts
