@@ -9,6 +9,7 @@ class ServiceClassUser:
         self.tls_parameters = tls_parameters
         self.ae = AE(ae_title=self.ae_title)
         self.ae.requested_contexts = StoragePresentationContexts
+        self.ae.requested_contexts = VerificationPresentationContexts
         self.assoc = None
 
     def associate(self, remote_address, remote_port, remote_aet):
@@ -19,7 +20,7 @@ class ServiceClassUser:
         else:
             self.assoc = self.ae.associate(addr=remote_address, port=remote_port, ae_title=remote_aet)
 
-    def send_c_store(self, dataset, priority=2):
+    def send_c_store(self, dataset, priority=1):
 
         if self.assoc.is_established:
             status = self.assoc.send_c_store(dataset=dataset, priority=priority, originator_aet=self.ae_title)
@@ -31,4 +32,4 @@ class ServiceClassUser:
                 raise AssociationException('Connection timed out, was aborted or received invalid response')
             # self.assoc.release()
         else:
-            raise AssociationException('It was possible to do a association')
+            raise AssociationException('It was not possible to do a association')
