@@ -1,0 +1,3 @@
+altgraph==0.17
+pydicom==1.4.2
+pynetdicom==1.4.1
